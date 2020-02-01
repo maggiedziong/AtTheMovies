@@ -1,6 +1,6 @@
 import React from "react";
 
-const FilterRating= (props) => {
+const FilterRating = (props) => {
   return (
     <div>
       <h3>{props.name}</h3>

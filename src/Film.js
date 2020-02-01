@@ -18,7 +18,7 @@ const Film = (props) => {
      
              <div className="movie__genres">
                 {props.genre.map(genre => {
-                    return <span key={genre.id}>{genre.name} </span>
+                    return <span key={genre}>{genre} </span>
                 })}
             </div>
         </div>

@@ -64,8 +64,7 @@ class App extends Component {
 
       const genre = movie.genre_ids.map(genre => genres
         .filter(g =>  genre === g.id)
-        .map(g => g)
-   
+        .map(g => g.name)
       )
 
       const movieData = { 
@@ -128,6 +127,7 @@ class App extends Component {
     const hasFilter = (genreFilter.length > 0 || ratingFilter !== 1 ) && !stateFilterActive
     const ratings = [5,6,7,8,9]
 
+    console.log(genreFilter)
 
     const primaryLoader = css`
       display: block;
@@ -151,9 +151,7 @@ class App extends Component {
              
               <div className="filters">
                 <button onClick={this.toggleFilter}>Filter
-                {hasFilter && 
-                  <span>  (filters applied)</span>
-                }
+                  <span className={hasFilter ? "show" : ""}>  (filters applied)</span>
                 </button>
 
                 <div  
