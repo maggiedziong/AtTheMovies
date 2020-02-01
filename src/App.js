@@ -5,7 +5,7 @@ import FilterGenre from './Filters/FilterGenre';
 import FilterRating from './Filters/FilterRating';
 import axios from 'axios';
 import { css } from '@emotion/core';
-import GridLoader from 'react-spinners/GridLoader';
+import CircleLoader from 'react-spinners/CircleLoader';
 import TMDBLogo from './tmdb-logo.png';
 
 class App extends Component {
@@ -135,11 +135,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <GridLoader
+        <CircleLoader
             css={primaryLoader}
             sizeUnit={"px"}
-            size={50}
-            color={'#3bb8de'}
+            size={150}
+            color={'#ffc107cf'}
             loading={this.state.loading}
           />
 
@@ -193,10 +193,12 @@ class App extends Component {
                   <Film {...movie} key={movie.key} />
                 ))}
               </div>
+              <img src={TMDBLogo} className="tmbd-logo" alt="Powered by The Movie DB"/>
             </div>
+             
           }
 
-          <img src={TMDBLogo} className="tmbd-logo" alt="Powered by The Movie DB"/>
+         
       </div>
     );
   }
