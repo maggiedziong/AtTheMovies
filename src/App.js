@@ -72,10 +72,11 @@ class App extends Component {
         title: movie.title, 
         popularity: movie.popularity,
         rating: movie.vote_average, 
-        genre: genre[0],
+        genre: genre,
         image : imgUrl + imgSize + movie.poster_path
       }
 
+      console.log(movieData)
       return movieData
     })
 
@@ -127,7 +128,6 @@ class App extends Component {
     const hasFilter = (genreFilter.length > 0 || ratingFilter !== 1 ) && !stateFilterActive
     const ratings = [5,6,7,8,9]
 
-    console.log(genreFilter)
 
     const primaryLoader = css`
       display: block;
