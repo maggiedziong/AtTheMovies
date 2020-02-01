@@ -76,7 +76,6 @@ class App extends Component {
         image : imgUrl + imgSize + movie.poster_path
       }
 
-      console.log(movieData)
       return movieData
     })
 
