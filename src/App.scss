@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css?family=Limelight&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Narrow:400,500&display=swap');
+@import 'reset.css';
+
+$gold: #ffc107cf;
+$gold--fade: #ffc10759;
+$gold--superfade: #ffc1072b;
+
+body {
+  background: black;
+}
+
+.App {
+  font-family: 'Archivo Narrow', sans-serif;
+  background: black;
+  color: white;
+  padding-top: 70px;
+
+  h1 {
+    font-family:  'Limelight', cursive;
+    font-size: 70px;
+    text-align: center;
+    color: $gold;
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: black;
+    padding: 20px 50px 1px;
+
+    &__inner {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+      border-bottom: 1px solid $gold--fade;
+
+      &.show {
+        max-height: 1000px;
+      }
+
+      > div {
+        padding: 40px 20px 20px;
+        position: relative;
+        
+        &::after {
+          content: '';
+          display: block;
+          width: 70%;
+          bottom: 0;
+          left: 15%;
+          position: absolute;
+          border-bottom: 1px solid $gold--superfade;
+        }
+
+        &.button-group {
+          display: flex;
+          justify-content: space-between;
+        }
+      
+      }
+    }
+
+    button {
+      background: none;
+      color: white;
+      border: none;
+      border-bottom: 1px solid $gold--fade;
+      font-size: 18px;
+      padding: 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: border .2s ease-in-out;
+
+      &:focus {
+        outline: none;
+       border-top: 3px auto $gold;
+      }
+
+      &.filter__clear {
+        text-align: center;
+        border: 1px solid $gold--fade;
+
+        &:hover {
+          border: 1px solid $gold;
+        }
+      }
+
+      span {
+        opacity: 0.5;
+        font-size: 90%;
+      }
+    }
+
+    &__display {
+      
+      &__inner{
+        margin: 10px 0 20px;
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      .filter {
+        padding: 8px 15px;
+        background: black;
+        color: white;
+        border: 1px solid $gold--fade;
+        border-radius: 3px;
+        margin: 5px;
+        cursor: pointer;
+        transition: border .2s ease-in-out;
+
+        &.selected,
+        &:hover {
+          border: 1px solid $gold;
+        }
+      }
+    }
+
+  }
+
+  .movie-list {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    margin: 0 20px 100px;
+
+    .movie {
+      width: 50%;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-end;
+
+      @media screen and (min-width: 600px) {
+        width: 33%;
+      }
+
+      @media screen and (min-width: 767px) {
+        width: 25%;
+      }
+
+    @media screen and (min-width: 1024px) {
+        width: 20%;
+      }
+
+      h3 {
+        font-size: 20px;
+        line-height: 1.5;
+        font-weight: 500;
+        text-align: center;
+        min-height: 60px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+
+      &__poster {
+        width: 100%;
+        padding-bottom: 150%;
+        position: relative;
+
+        .rating {
+          background: rgba(0, 0, 0, 0.7686274509803922);
+          font-size: 14px;
+          padding: 5px 4px 3px 10px;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+
+      &__genres {
+        font-size: 14px;
+        margin-top: 5px;
+        text-align: center;
+        color: #ffc107cf;
+        line-height: 1.3;
+        min-height: 36px;
+
+        span {
+          position: relative;
+          padding-right: 10px;
+
+          &::after {
+            content: '-';
+            display: block;
+            position: absolute;
+            right: 4px;
+            top: 0;
+          }
+
+          &:last-child {
+            padding-right: 0;
+
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tmbd-logo {
+    width: 130px;
+    opacity: 80%;
+    margin: 0 auto 50px;
+    display: block;
+  }
+}
