@@ -9,7 +9,7 @@ const Film = (props) => {
     };
 
     return (
-        <div className='movie' data-rating={props.rating}>
+        <div className='movie'>
            <h3>{props.title}</h3>
            
             <div className="movie__poster" style={style}>
@@ -18,7 +18,7 @@ const Film = (props) => {
      
              <div className="movie__genres">
                 {props.genre.map(genre => {
-                    return <span key={genre}>{genre} </span>
+                    return <span key={genre}>{genre}</span>
                 })}
             </div>
         </div>

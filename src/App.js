@@ -65,6 +65,7 @@ class App extends Component {
       const genre = movie.genre_ids.map(genre => genres
         .filter(g =>  genre === g.id)
         .map(g => g.name)
+        .toString()
       )
 
       const movieData = { 
@@ -126,6 +127,7 @@ class App extends Component {
     const stateFilterActive  = this.state.filterActive
     const hasFilter = (genreFilter.length > 0 || ratingFilter !== 1 ) && !stateFilterActive
     const ratings = [5,6,7,8,9]
+
 
 
     const primaryLoader = css`
@@ -193,12 +195,11 @@ class App extends Component {
                   <Film {...movie} key={movie.key} />
                 ))}
               </div>
-              <img src={TMDBLogo} className="tmbd-logo" alt="Powered by The Movie DB"/>
-            </div>
-             
-          }
 
-         
+              <img src={TMDBLogo} className="tmbd-logo" alt="Powered by The Movie DB"/>
+
+            </div>  
+          }
       </div>
     );
   }
