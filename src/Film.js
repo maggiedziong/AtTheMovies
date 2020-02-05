@@ -4,7 +4,8 @@ const Film = (props) => {
 
     const style = {
         backgroundImage: 'url(' + props.image + ')',
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
         backgroundColor: 'black'
     };
 
@@ -13,13 +14,17 @@ const Film = (props) => {
            <h3>{props.title}</h3>
            
             <div className="movie__poster" style={style}>
-                <span className="rating">{props.rating} / 10</span>
+                {/* <span className="rating">{props.rating} / 10</span> */}
             </div>
      
              <div className="movie__genres">
                 {props.genre.map(genre => {
                     return <span key={genre}>{genre}</span>
                 })}
+            </div>
+
+            <div className="movie__description">
+                {props.summary}
             </div>
         </div>
     )

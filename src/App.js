@@ -19,7 +19,8 @@ class App extends Component {
       ratingFilter: 1,
       error: null,
       loading: true,
-      filterActive: false
+      filterActive: false,
+      showDetail: false
     }
   }
 
@@ -59,6 +60,8 @@ class App extends Component {
     const imgUrl = this.state.images.base_url
     const imgSize = this.state.images.poster_sizes[4] 
 
+    console.log(this.state.movies)
+
     const cleanMovies = this.state.movies.map((movie, i) => {
       const genres = this.state.genres
 
@@ -74,7 +77,8 @@ class App extends Component {
         popularity: movie.popularity,
         rating: movie.vote_average, 
         genre: genre,
-        image : imgUrl + imgSize + movie.poster_path
+        image : imgUrl + imgSize + movie.poster_path, 
+        summary: movie.overview
       }
 
       return movieData
@@ -98,6 +102,12 @@ class App extends Component {
   toggleFilter = () => {
     this.setState({
       filterActive: !this.state.filterActive
+    });
+  }
+
+  toggleLayout = () => {
+    this.setState({
+      showDetail: !this.state.showDetail
     });
   }
 
@@ -125,6 +135,7 @@ class App extends Component {
     const genreFilter  = this.state.genreFilter
     const ratingFilter  = this.state.ratingFilter
     const stateFilterActive  = this.state.filterActive
+    const showDetail  = this.state.showDetail
     const hasFilter = (genreFilter.length > 0 || ratingFilter !== 1 ) && !stateFilterActive
     const ratings = [5,6,7,8,9]
 
@@ -151,12 +162,17 @@ class App extends Component {
               <h1>NOW PLAYING</h1>
              
               <div className="filters">
-                <button onClick={this.toggleFilter}>Filter
-                  <span className={hasFilter ? "show" : ""}>  (filters applied)</span>
-                </button>
+                  <button onClick={this.toggleFilter}>Filter
+                  </button>
+
+                  {hasFilter &&
+                    <button 
+                    className="filter filter--clear--top" 
+                    onClick={this.clearFilter}>X Clear filters</button>
+                  }
 
                 <div  
-                  className={`filters__inner ${stateFilterActive ? "show" : "hide"}`} >
+                  className={`filters__inner ${stateFilterActive ? "show" : "hide"}`}>
 
                   <FilterGenre
                     name={'by genre'} 
@@ -176,18 +192,25 @@ class App extends Component {
 
                   <div className="button-group">
                     <button 
-                      className="filter filter__clear" 
+                      className="filter filter--clear" 
                       onClick={this.clearFilter}>Clear filters</button>
 
                     <button 
-                      className="filter filter__clear" 
+                      className="filter filter--clear" 
                       onClick={this.toggleFilter}>Close filters</button>
 
                   </div>
                 </div>
+                <button 
+                  className="filter filter--display" 
+                  onClick={this.toggleLayout}>
+                    <span> {showDetail ? "Condensed view" : "Show details"}</span>
+                </button>
               </div>
+             
+             
 
-              <div className="movie-list">
+              <div className={`movie-list ${showDetail ? "movie-list--detail" : "movie-list--condensed"}`}>
                 {this.movies()
                 .filter((movie) => movie.rating >= this.state.ratingFilter)
                 .filter((movie) => this.genreFilter(movie))
